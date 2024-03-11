@@ -32,3 +32,47 @@ Setting up an environment for real-time product category classification.
     - Installation: [Installing Istio for Knative](https://knative.dev/docs/install/installing-istio/#using-istio-mtls-feature-with-knative), [Istioctl](https://istio.io/latest/docs/setup/install/istioctl/)
 5. Cert-manager: cert. management for HTTP communication
     - Installation: [cert-manager installation](https://cert-manager.io/docs/installation/)
+6. GitOps
+7. ArgoCD
+    - Installation: [ArgoCD: Getting Started](https://argo-cd.readthedocs.io/en/stable/getting_started/)
+8. Helm
+9. Kafka: Distributed Streaming Platform
+    - supports:
+        - High performance event streaming platform
+        - manages all events/data flows
+        - uses message queue in pub-sub model
+            - asynch. communication
+            - scalable architecture
+    - Installation: using kafka on k8s
+        ```bash
+        $ kubectl apply -f zookeeper.yaml
+        $ kubectl apply -f kafka.yaml
+        ```
+    - Environment setup
+        - topic creation
+            1. access kafka pod
+                ```bash
+                $ kubectl get pod
+                $ kubectl exec -it pod/{kafka-pod} -- /bin/bash
+                ```
+            2. create topic
+                ```bash
+                $$ kafka-topics --create --bootstrap-server localhost:29092 --replication-factor=1 --partitions=1 --topic=category-match-in
+                $$ kafka-topics --create --bootstrap-server localhost:29092 --replication-factor=1 --partitions=1 --topic=category-match-out
+                ```
+        - Test
+            ```bash
+            cd test-kafka
+            kubectl apply -f pod.yaml
+            kubectl exec -it pod/test-pod -- /bin/bash
+            apt-get update
+            apt-get install -y vim
+            vi main.py
+            pip install confluent-kafka
+            python main.py
+            ```
+
+## Dataset
+
+- Using "[상품 이미지](https://www.aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&aihubDataSe=data&dataSetSn=64)"(Product Image) data
+    - Use "Sample data"(536 MB)
