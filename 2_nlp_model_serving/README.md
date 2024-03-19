@@ -41,3 +41,7 @@
 - [Installation](https://fastapi.tiangolo.com/tutorial/)
 - [Sample Code](https://fastapi.tiangolo.com/tutorial/first-steps/)
 - [Lifespan](https://fastapi.tiangolo.com/advanced/events/?h=lifespan#lifespan)
+- [BaseModel](https://fastapi.tiangolo.com/tutorial/body/?h=basemodel#import-pydantics-basemodel)
+
+- tips:
+    - must use `protobuf` version 3.20.x or lower
