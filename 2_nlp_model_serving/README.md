@@ -40,3 +40,4 @@
 
 - [Installation](https://fastapi.tiangolo.com/tutorial/)
 - [Sample Code](https://fastapi.tiangolo.com/tutorial/first-steps/)
+- [Lifespan](https://fastapi.tiangolo.com/advanced/events/?h=lifespan#lifespan)
