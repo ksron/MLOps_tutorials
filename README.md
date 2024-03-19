@@ -3,10 +3,10 @@ Mini projects for MLOps
 
 ## Projects
 
-### 1. [Environment Setup] Real-time Product Category Classification
+### 1. [[Environment Setup] Real-time Product Category Classification](./1_product_category_classification/README.md)
 Setting up an environment for real-time product category classification.
 
-### 2. [Monitoring Pipeline] E-commerce Efficiency Enhancement with NLP Model
+### 2. [[Monitoring Pipeline] NLP Model Serving for Efficient E-commerce Operation](./2_nlp_model_serving/README.md)
 Establishing a pipeline for real-time API serving of NLP models and monitoring usage based on authentication for enhancing efficiency in e-commerce.
 
 ### 3. [MLOps Pipeline] Financial Anomaly Detection
