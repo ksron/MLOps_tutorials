@@ -76,3 +76,58 @@ Setting up an environment for real-time product category classification.
 
 - Using "[상품 이미지](https://www.aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&aihubDataSe=data&dataSetSn=64)"(Product Image) data
     - Use "Sample data"(536 MB)
+
+## Model Serving Pipeline 
+
+![model serving pipeline](./img/model_serving_pipeline.png)
+- Model storage
+    - Save trained artifacts **automatically** using model storage
+        - trained model
+        - tokenizer json
+    - Create directories for each version
+    - Read from # of pods
+- GitOps
+    - Separate Dev/Ops values files
+    - Private Repository: save `git  token secret` in k8s cluster
+        - use argoCD
+    - check api version of the current model using git
+- ModelAPI
+    - resource moniotoring(check GPU utilization)
+    - config. # of pods to process the request throughput/s
+    - efficiently use resources and remove any obstacles for usign auto scaling 
+        - if setting min replica to 0, failures may occur occasionally
+
+## Model Inference Pipeline
+
+![model inference pipeline](./img/model_inference_pipeline.png)
+
+- Kafka-worker
+    - consume
+        - config `consume config`
+        - consume topic subscribe
+        - message polling
+    - process
+        - message parsing
+        - model api call
+            - preprocessing using tokenizer
+            - generate model api input
+            - model api request
+            - parsing model api response
+            - generate label value
+            - generate message
+    - produce
+        - config `produce config`
+        - produce message to topic
+
+## Inference Pipeline Operation
+
+- Kafka
+    - decide message spec.
+    - increase consume topic partition for throughput
+        - #. partition == #. workers
+    - Security SASL config
+- Kafka worker
+    - requested throughput
+        - asynch request handling
+    - set timeout based on the speed of model inference
+    - use trained model artifacts(tokenizer)
