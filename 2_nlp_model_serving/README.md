@@ -9,15 +9,34 @@
 
 - (Uses cloud & k8s environment)
 
-## Data
+## Project Outline
 
-- Kaggle
-    - Dataset: [News Summary](https://www.kaggle.com/datasets/sunnysai12345/news-summary)
-    - Notebook: [Training T5 Models made easy with simpleT5](https://www.kaggle.com/code/nulldata/training-t5-models-made-easy-with-simplet5/notebook)
+1. Write AI API Service
+2. Model management based on cloud storage
+3. Setup GCP k8s infrastructure
+4. Deploy CI/CD 
+5. API Authentication using Nginx Ingress 
+6. API resource monitoring using logs (ETL Pipeline)
 
-## Tools and Infra.
+## Project Materials
+
+### Model & Dataset
+
+- Dataset: [News Summary](https://www.kaggle.com/datasets/sunnysai12345/news-summary)
+- NLP Model: [Training T5 Models made easy with simpleT5](https://www.kaggle.com/code/nulldata/training-t5-models-made-easy-with-simplet5/notebook)
+
+### Tools and Infra.
 
 - Architecture overview
     - ![Project Oveview](./img/project_overview.png)
 - Tools
     - ![Tools](./img/tools.png)
+
+## Instructions
+
+### Installations
+
+#### FastAPI
+
+- [Installation](https://fastapi.tiangolo.com/tutorial/)
+- [Sample Code](https://fastapi.tiangolo.com/tutorial/first-steps/)
