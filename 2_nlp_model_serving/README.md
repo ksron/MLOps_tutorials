@@ -34,7 +34,7 @@
 
 ## Instructions
 
-### Installations
+### Resources
 
 #### FastAPI
 
@@ -42,6 +42,7 @@
 - [Sample Code](https://fastapi.tiangolo.com/tutorial/first-steps/)
 - [Lifespan](https://fastapi.tiangolo.com/advanced/events/?h=lifespan#lifespan)
 - [BaseModel](https://fastapi.tiangolo.com/tutorial/body/?h=basemodel#import-pydantics-basemodel)
+- [API in Container](https://fastapi.tiangolo.com/de/deployment/docker/?h=docker)
 
 - tips:
     - must use `protobuf` version 3.20.x or lower
