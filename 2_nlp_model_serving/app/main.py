@@ -20,7 +20,7 @@ The development comes at a time when the micro-blogging platform has been engage
 def load_model():
     print("start model load")
     model = SimpleT5()
-    model.load_model("t5", "../model", use_gpu=False)
+    model.load_model("t5", "/model", use_gpu=False)
 
     print("finished model load")
     return model
@@ -37,7 +37,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
-@app.get("/predict")
+@app.post("/predict")
 async def predict(input: Input):
     result = ml_models["nlp_model"].predict(input.text)[0]
     return {"result": result}
