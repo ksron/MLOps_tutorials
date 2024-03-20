@@ -34,6 +34,15 @@
 
 ## Instructions
 
+1. Create AI API Service
+    - setup to load model
+    - create `POST` request to handle request
+2. Create a GCS client library
+    - setup Google cloud environment
+    - create a gcp client library
+3. Implement model upload
+4. Implement model download
+
 ### Resources
 
 #### FastAPI
@@ -46,3 +55,15 @@
 
 - tips:
     - must use `protobuf` version 3.20.x or lower
+
+#### Google Cloud
+
+- Steps
+    1. Setup a project
+    2. Create a bucket
+    3. Create a service account & key
+    4. Grant permission to access the bucket
+        - Set to "Stoarge Admin"
+
+- client
+    - [Python Client for GCS](https://cloud.google.com/python/docs/reference/storage/latest)

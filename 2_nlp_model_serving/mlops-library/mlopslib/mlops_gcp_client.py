@@ -18,8 +18,17 @@ class MLOpsGCSClient(object):
                 blob.upload_from_filename(f"{local_dir_path}/{file_name}")
 
                 print(f"model is uploaded. {blob.public_url}")
+
         except Exception as e:
             print(f"Failed to upload: {e}")             
     
-    def dowload_model():
-        return True
+    def dowload_model(self, bucket_name, blob_name, dest_file_path):
+        try:
+            bucket = self.client.get_bucket(bucket_name)
+            blob = bucket.blob(blob_name)
+            blob.download_to_filename(dest_file_path)
+
+            print(f"model has downloaded. {dest_file_path}")
+
+        except Exception as e:
+            print(f"Failed to download: {e}")             
