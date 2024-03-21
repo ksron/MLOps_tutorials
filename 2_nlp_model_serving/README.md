@@ -52,7 +52,18 @@
 ### GCP Kubernetes Deployment Environment 
 
 1. Setup GCP k8s environment
+    - Enable k8s Engine API
+    - Create k8s cluster
 2. Create GCP registry
+    - build docker image
+        ```bash
+        docker build . -t asia-northeast3-docker.pkg.dev/mlops-project-417801/docker/mlops-app
+        ```
+    - push docker image to the GCP
+        ```bash
+        cat ./gcp_key.json | docker login -u _json_key --password-stdin asia-northeast3-docker.pkg.dev
+        docker push {image_name}
+        ```
 3. Helm register template
 4. Create k8s app
 
