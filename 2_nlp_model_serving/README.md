@@ -1,6 +1,5 @@
 # [Monitoring Pipeline] NLP Model Serving for Efficient E-commerce Operation
 
-
 ## Goal
 
 ![Project Oveview User side](./img/project_overview_user_side.png)
