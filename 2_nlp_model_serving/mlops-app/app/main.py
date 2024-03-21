@@ -4,7 +4,7 @@ from simplet5 import SimpleT5
 from pydantic import BaseModel
 from fastapi import FastAPI
 
-from nlpmlopslib import MLOpsClient
+from mlopslib import MLOpsGCSClient
 import gcp_key
 
 GCP_KEY_FILE = gcp_key.GCP_KEY_FILE
