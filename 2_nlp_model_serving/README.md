@@ -33,6 +33,8 @@
 
 ## Instructions
 
+### AI API Service
+
 1. Create AI API Service
     - setup to load model
     - create `POST` request to handle request
@@ -41,6 +43,19 @@
     - create a gcp client library
 3. Implement model upload
 4. Implement model download
+5. Packaging the library
+    - For test:
+        ```bash
+        pip install 'nlp_mlopslib @ git+https://github.com/ksron/MLOps_tutorials.git@2_nlp_model/packaging#subdirectory=2_nlp_model_serving/mlops-library'
+        ```
+
+### GCP Kubernetes Deployment Environment 
+
+1. Setup GCP k8s environment
+2. Create GCP registry
+3. Helm register template
+4. Create k8s app
+
 
 ### Resources
 
