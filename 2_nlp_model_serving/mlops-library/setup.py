@@ -6,7 +6,7 @@ setup(
     description="MLOps library for NLP model",
     url="https://github.com/ksron/MLOps_tutorials.git",
     author="ksron",
-    author_email="kasrlmoojoo@gmail.com"
+    author_email="kasrlmoojoo@gmail.com",
     packages=["mlopslib"],
     install_requires=[
         "google-cloud-storage==2.16.0"
