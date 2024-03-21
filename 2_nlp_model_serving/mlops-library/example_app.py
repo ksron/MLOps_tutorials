@@ -1,3 +1,7 @@
+"""
+This file is modification of `mlops-app`
+"""
+
 from contextlib import asynccontextmanager
 
 from simplet5 import SimpleT5
@@ -42,7 +46,7 @@ def load_model():
     
     print("start model load")
     model = SimpleT5()
-    model.load_model("t5", "/model", use_gpu=False)
+    model.load_model("t5", "./model", use_gpu=False)
 
     print("finished model load")
     return model
