@@ -12,6 +12,7 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 # 
 COPY ./app /code/app
+COPY ./app/gcp_key.py /code/gcp_key.py
 # COPY ./model /model
 RUN mkdir ./model
 
