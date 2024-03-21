@@ -65,8 +65,28 @@
         docker push {image_name}
         ```
 3. Helm register template
-4. Create k8s app
+    - template packaging
+        ```bash
+        helm lint .
+        helm template test . --dry-run --debug
+        helm package .
+        ```
+    - register
+        ```bash
+        cat ./gcp_key.json | helm registry login -u _json_key --password-stdin asia-northeast3-docker.pkg.dev
+        helm push mlops-helm-0.0.1.tgz oci://asia-northeast3-docker.pkg.dev/mlops-project-417801/helm     
+        ```
+    - deployment
+        - in the cloud shell:
+            ```bash
+            kubectl get all
+            kubectl create namespace api
+            helm install nlp-service
+            helm install nlp-service oci://asia-northeast3-docker.pkg.dev/mlops-project-417801/helm/mlops-helm --namespace api
+            ```
+        - access external web page
 
+4. Create k8s app
 
 ### Resources
 
@@ -92,3 +112,7 @@
 
 - client
     - [Python Client for GCS](https://cloud.google.com/python/docs/reference/storage/latest)
+
+#### Helm
+
+- [Installation](https://helm.sh/docs/intro/install/)
