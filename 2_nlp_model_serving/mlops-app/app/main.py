@@ -42,7 +42,7 @@ def load_model():
     
     print("start model load")
     model = SimpleT5()
-    model.load_model("t5", "/model", use_gpu=False)
+    model.load_model("t5", "./model", use_gpu=False)
 
     print("finished model load")
     return model
