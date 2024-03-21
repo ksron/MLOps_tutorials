@@ -4,6 +4,11 @@ from simplet5 import SimpleT5
 from pydantic import BaseModel
 from fastapi import FastAPI
 
+from nlpmlopslib import MLOpsClient
+import gcp_key
+
+GCP_KEY_FILE = gcp_key.GCP_KEY_FILE
+
 # From Kaggle example text
 class Input(BaseModel):
     text: str="""summarize: Twitter’s interim resident grievance officer for India has stepped down, leaving the micro-blogging site without a grievance official as mandated by the new IT rules to address complaints from Indian subscribers, according to a source.
@@ -18,6 +23,23 @@ The development comes at a time when the micro-blogging platform has been engage
 """
 
 def load_model():
+    client = MLOpsGCSClient(GCP_KEY_FILE)
+    
+    model_list = [
+        'config.json', 'eval_results.txt', 'generation_config.json',
+        'model_args.json', 'pytorch_model.bin', 'special_tokens_map.json',
+        'spiece.model', 'tokenizer_config.json', 'training_args.bin'
+        ]
+    blob_base = "nlp-model"
+    
+
+    for model_name in model_list:
+        client.dowload_model(
+            bucket_name="mlops-model-bucket-0",
+            blob_name=f"{blob_base}/{model_name}",
+            dest_file_path=f"./model/{model_name}"
+        )
+    
     print("start model load")
     model = SimpleT5()
     model.load_model("t5", "/model", use_gpu=False)

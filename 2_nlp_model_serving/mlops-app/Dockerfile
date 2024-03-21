@@ -12,7 +12,8 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 # 
 COPY ./app /code/app
-COPY ./model /model
+# COPY ./model /model
+RUN mkdir ./model
 
 # 
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
