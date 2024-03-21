@@ -76,21 +76,47 @@
         cat ./gcp_key.json | helm registry login -u _json_key --password-stdin asia-northeast3-docker.pkg.dev
         helm push mlops-helm-0.0.1.tgz oci://asia-northeast3-docker.pkg.dev/mlops-project-417801/helm     
         ```
+4. Create k8s app
     - deployment
         - in the cloud shell:
             ```bash
             kubectl get all
             kubectl create namespace api
-            helm install nlp-service
             helm install nlp-service oci://asia-northeast3-docker.pkg.dev/mlops-project-417801/helm/mlops-helm --namespace api
+            kubectl get all -n api
             ```
         - access external web page
 
-4. Create k8s app
+### CI/CD
 
-### Resources
+1. Using ArgoCD
+    - Install ArgoCD
+    - Deploy ArgoCD
+        ```bash
+        kubectl get -n argocd svc -w argocd-server
+        kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+        ```
+    - login
+        - initial account:
+            - id: admin
+            - password: {check secret from kubectl}
+                ```bash
+                kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
+                ```
+        - update account from `User Info`
+    - Install ArgoCD CLI
+    - Register registry (need key.json)
+        ```
+        argocd login {ip}
+        argocd repo add asia-northeast3-docker.pkg.dev --type helm --name registry --enable-oci --username _json_key --password "$(cat key.json)"
+        ```
+2. Using GitOps for CI
 
-#### FastAPI
+
+
+## Resources
+
+### FastAPI
 
 - [Installation](https://fastapi.tiangolo.com/tutorial/)
 - [Sample Code](https://fastapi.tiangolo.com/tutorial/first-steps/)
@@ -101,7 +127,7 @@
 - tips:
     - must use `protobuf` version 3.20.x or lower
 
-#### Google Cloud
+### Google Cloud
 
 - Steps
     1. Setup a project
@@ -113,6 +139,10 @@
 - client
     - [Python Client for GCS](https://cloud.google.com/python/docs/reference/storage/latest)
 
-#### Helm
+### Helm
 
 - [Installation](https://helm.sh/docs/intro/install/)
+
+### ArgoCD
+
+- [Installation](https://argo-cd.readthedocs.io/en/stable/getting_started/)
