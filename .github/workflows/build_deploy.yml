@@ -21,7 +21,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ env.GCP_KEY }} |  cat > ./key.json
+      - run: echo "$env.GCP_KEY" |  cat > ./key.json
       - run: cat ./key.json | docker login -u _json_key --password-stdin asia-northeast3-docker.pkg.dev
       - name: Checkout
         uses: actions/checkout@master
