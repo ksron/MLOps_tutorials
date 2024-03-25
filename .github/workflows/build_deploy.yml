@@ -17,14 +17,21 @@ concurrency:
   group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
   cancel-in-progress: true
 
+env:
+  GCP_KEY: ${{ secrets.GCP_KEY }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - run: echo ${{ GCP_KEY }} |  cat > ./key.json
+      - run: cat ./key.json | docker login -u _json_key --password-stdin asia-northeast3-docker.pkg.dev
       - name: Checkout
         uses: actions/checkout@master
-      - run: echo 'dockerizing...'
-      - run: echo 'registry push'
+      - name: Docker build
+        run: docker build . -t asia-northeast3-docker.pkg.dev/mlops-project-417801/docker/mlops-app
+      - name: Docker push
+        run: docker push asia-northeast3-docker.pkg.dev/mlops-project-417801/docker/mlops-app
       
   deploy:
     runs-on: ubuntu-latest
