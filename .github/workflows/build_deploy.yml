@@ -2,9 +2,6 @@ name: 'Project2 CI/CD pipeline'
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - mlops-library
   pull_request:
     branches:
       - project2
@@ -28,6 +25,8 @@ jobs:
       - run: cat ./key.json | docker login -u _json_key --password-stdin asia-northeast3-docker.pkg.dev
       - name: Checkout
         uses: actions/checkout@master
+        with:
+          ref: 'project2'
       - name: Docker build
         run: docker build . -t asia-northeast3-docker.pkg.dev/mlops-project-417801/docker/mlops-app
       - name: Docker push
