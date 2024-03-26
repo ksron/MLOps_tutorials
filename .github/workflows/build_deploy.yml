@@ -29,7 +29,9 @@ jobs:
           registry: asia-northeast3-docker.pkg.dev
           username: _json_key
           password: ${{ secrets.GCP_KEY }}
-      - run: cd 2_nlp_model_serving/mlops-app
+      - run: |
+          cd 2_nlp_model_serving/mlops-app
+          ls -l
       - name: Docker build
         run: docker build . -t asia-northeast3-docker.pkg.dev/mlops-project-417801/docker/mlops-app
       - name: Docker push
