@@ -23,12 +23,13 @@ jobs:
         uses: actions/checkout@master
         with:
           ref: 'project2'
-      - name: Login to GCR
+      - name: Login to Google Artifact Registry(GAR)
         uses: docker/login-action@v3
         with:
           registry: asia-northeast3-docker.pkg.dev
           username: _json_key
           password: ${{ secrets.GCP_KEY }}
+      - run: cd 2_nlp_model_serving/mlops-app
       - name: Docker build
         run: docker build . -t asia-northeast3-docker.pkg.dev/mlops-project-417801/docker/mlops-app
       - name: Docker push
