@@ -27,7 +27,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: asia-northeast3-docker.pkg.dev
-          username: __json_key
+          username: _json_key
           password: ${{ secrets.GCP_KEY }}
       - name: Docker build
         run: docker build . -t asia-northeast3-docker.pkg.dev/mlops-project-417801/docker/mlops-app
