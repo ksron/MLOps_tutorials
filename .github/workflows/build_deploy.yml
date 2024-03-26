@@ -33,7 +33,7 @@ jobs:
           password: ${{ secrets.GCP_KEY }}
       - name: Docker build and push
         run: |
-          docker build -t asia-northeast3-docker.pkg.dev/mlops-project-417801/docker/mlops-app
+          docker build . -t asia-northeast3-docker.pkg.dev/mlops-project-417801/docker/mlops-app
           
           docker push asia-northeast3-docker.pkg.dev/mlops-project-417801/docker/mlops-app
         working-directory: ${{ env.working-dir }}
